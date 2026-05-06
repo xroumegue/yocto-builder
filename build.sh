@@ -3,10 +3,11 @@
 rootdir=$(realpath "$(dirname "$0")")
 
 builderdir=${rootdir}/builder
-configsdir=${rootdir}/configs
 kasdir=${rootdir}/kas
 
-export KAS_CONTAINER_IMAGE='docker.io/xroumegue/kas-xilinx:4.6'
+KAS_CONTAINER_IMAGE=${KAS_CONTAINER_IMAGE:-'ghcr.io/siemens/kas/kas:5.2'}
+export KAS_CONTAINER_IMAGE
+
 export KAS_CONTAINER=${kasdir}/kas-container
 
 gitconfig_file=${HOME}/.gitconfig
@@ -17,4 +18,3 @@ then
 fi
 
 "${builderdir}"/bin/build.sh "$@"
-
